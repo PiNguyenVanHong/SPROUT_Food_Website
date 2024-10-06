@@ -1,9 +1,9 @@
 import Logo from "@/assets/logo.png";
-import Image1 from "../../public/products/beans/1.svg";
-import Image2 from "../../public/products/beans/2.png";
-import Image3 from "../../public/products/beans/3.svg";
-import Image4 from "../../public/products/beans/4.svg";
-import Image5 from "../../public/products/beans/5.svg";
+import Image1 from "@/assets/products/beans/1.svg";
+import Image2 from "@/assets/products/beans/2.png";
+import Image3 from "@/assets/products/beans/3.svg";
+import Image4 from "@/assets/products/beans/4.svg";
+import Image5 from "@/assets/products/beans/5.svg";
 
 import {
   AlignJustify,
