@@ -1,3 +1,7 @@
+import Image1 from "@/assets/homepage/1.png";
+import SaleBadge from "@/assets/homepage/sale-badge.png";
+import SaleRibbon from "@/assets/homepage/sale-ribbon-02.png";
+
 import { Button } from "@/components/ui/button";
 
 function HeroComponent() {
@@ -16,15 +20,15 @@ function HeroComponent() {
             </div>
           </div>
           <div className="w-1/2">
-            <img src="./homepage/1.png" alt="" />
+            <img src={Image1} alt="" />
           </div>
         </div>
         <div className="basis-1/3 bg-foreground rounded-xl mr-2 relative text-background overflow-hidden shadow-lg">
           <div className="absolute -top-5 -right-5 w-40 ">
-            <img src="./homepage/sale-badge.png" alt="" />
+            <img src={SaleBadge} alt="" />
           </div>
           <div className="absolute bottom-8">
-            <img src="./homepage/sale-ribbon-02.png" alt="" />
+            <img src={SaleRibbon} alt="" />
           </div>
           <div className="absolute top-20 left-1/2 -translate-x-1/2 font-medium">
             <h1 className="text-xl mb-10">Spring promo code:</h1>
@@ -38,10 +42,10 @@ function HeroComponent() {
       <div className="w-full h-[300px] flex items-center justify-center lg:hidden">
         <div className="w-full h-full mx-2 bg-foreground rounded-3xl relative inset-0 text-background overflow-hidden shadow-lg">
           <div className="absolute -top-5 -right-5 w-40 ">
-            <img src="./homepage/sale-badge.png" alt="" />
+            <img src={SaleBadge} alt="" />
           </div>
           <div className="absolute bottom-4">
-            <img src="./homepage/sale-ribbon-02.png" alt="" />
+            <img src={SaleRibbon} alt="" />
           </div>
           <div className="absolute top-5 left-5 font-medium">
             <h1 className="text-lg mb-4">Spring promo code:</h1>

@@ -1,10 +1,10 @@
-import Image1 from "../../../public/products/beans/1.svg";
-import Image2 from "../../../public/products/beans/2.png";
-import Image3 from "../../../public/products/beans/3.svg";
-import Image4 from "../../../public/products/beans/4.svg";
-import Image5 from "../../../public/products/beans/5.svg";
+import Image1 from "@/assets/products/beans/1.svg";
+import Image2 from "@/assets/products/beans/2.png";
+import Image3 from "@/assets/products/beans/3.svg";
+import Image4 from "@/assets/products/beans/4.svg";
+import Image5 from "@/assets/products/beans/5.svg";
 
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -83,8 +83,6 @@ const orderItems = [
 ];
 
 function CheckoutPage() {
-  const [items, setItems] = useState(orderItems);
-
   const form = useForm<z.infer<typeof formCheckoutSchema>>({
     resolver: zodResolver(formCheckoutSchema),
     defaultValues: {
@@ -118,7 +116,7 @@ function CheckoutPage() {
     return formatCVV(value);
   }, []);
 
-  const subtotal = items.reduce(
+  const subtotal = orderItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
@@ -430,7 +428,7 @@ function CheckoutPage() {
             Purchase
           </Button>
           <div className="">
-            {items.map((item, index) => (
+            {orderItems.map((item, index) => (
              <CartItem key={index} name={item.name} quantity={item.quantity} price={item.price} image={item.image} />
             ))}
           </div>

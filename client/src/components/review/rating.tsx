@@ -15,10 +15,11 @@ const Rating = ({
   size = "w-5 h-5",
   isHidden,
 }: RatingProps) => {
-  const roundedValue = Math.round(value * 2) / 2; // Round to nearest 0.5
+  const roundedValue = Math.round(value * 2) / 2;
+
 
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex items-center lg:space-x-4">
       <div className="flex items-center">
         {[1, 2, 3, 4, 5].map((star) => (
           <span key={star} className="relative">

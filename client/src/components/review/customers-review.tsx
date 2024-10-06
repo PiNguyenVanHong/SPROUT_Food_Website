@@ -1,4 +1,4 @@
-import { RotateCcw } from "lucide-react";
+import { RotateCcw, Star } from "lucide-react";
 import { Button } from "../ui/button";
 import Rating from "./rating";
 import ReviewBox from "./review-box";
@@ -28,12 +28,33 @@ const reviews = [
 
 function CustomersReview() {
   return (
-    <div className="w-full flex flex-col mt-14 relative">
-      <div className="w-full flex items-center justify-between">
-        <h2 className="font-semibold text-2xl">Customers review</h2>
+    <div className="w-full flex flex-col mt-0 lg:mt-14 relative">
+      <div className="w-full flex items-center justify-between truncate">
+        <h2 className="font-semibold text-xl lg:text-2xl">Customers review</h2>
         <div className="flex items-center">
-          <Rating value={4.9} totalReviews={12} color="#4C7C7D" />
-          <span className="ml-4 mt-1 text-sm text-muted-foreground/80 font-medium">
+          <div className="flex items-center mr-1 lg:gap-2 lg:hidden">
+            <span className="relative">
+              <Star className="w-5 h-5 text-gray-300" fill="currentColor" />
+              <span
+                style={{
+                  width: `${Math.min(
+                    100,
+                    Math.max(0, (4.4 / 5) * 100)
+                  )}%`,
+                }}
+                className="absolute top-0 left-0 overflow-hidden"
+              >
+                <Star className="w-5 h-5 text-foreground-green" fill="currentColor" />
+              </span>
+            </span>
+          </div>
+          <Rating
+          size="w-5 h-5 hidden lg:block"
+            value={4.4}
+            totalReviews={12}
+            color="#4C7C7D"
+          />
+          <span className="ml-1 lg:ml-4 mt-0 lg:mt-1 text-sm text-muted-foreground/80 font-medium">
             (9 reviews)
           </span>
         </div>
@@ -50,7 +71,11 @@ function CustomersReview() {
         ))}
       </div>
       <div className="w-full text-center pt-40 bg-gradient-to-t from-background to-transparent absolute bottom-0">
-        <Button className="font-medium relative -bottom-5" size={"lg"} variant={"default"}>
+        <Button
+          className="font-medium relative -bottom-5"
+          size={"lg"}
+          variant={"default"}
+        >
           <RotateCcw className="mr-3" size={16} />
           <span>Show all</span>
         </Button>

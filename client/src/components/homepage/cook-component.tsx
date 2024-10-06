@@ -1,3 +1,7 @@
+import Image1 from "@/assets/cook/1.svg";
+import Image2 from "@/assets/cook/2.svg";
+import Image3 from "@/assets/cook/3.svg";
+
 import { ChefHat } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,9 +12,9 @@ function CookComponent() {
       <div className="max-w-7xl w-full mx-auto flex flex-col justify-start border-t-2 border-background-darker pt-10 lg:pt-20">
         <div className="flex items-center gap-4">
           <ChefHat className="-rotate-6" size={32} />
-          <h1 className="text-3xl font-semibold">What to cook?</h1>
+          <h1 className="text-xl lg:text-3xl font-semibold">What to cook?</h1>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-10 lg:mt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mt-10 lg:mt-20">
           <div className="bg-foreground-red/10 p-8 lg:px-20 lg:py-14 rounded-xl flex lg:flex-col items-center justify-between shrink-0 grow-0">
             <div className="flex flex-col items-start lg:items-center gap-2">
               <h1 className="text-xl lg:text-3xl font-semibold text-foreground-red tracking-wide">
@@ -28,7 +32,7 @@ function CookComponent() {
               </Button>
             </div>
             <div>
-              <img src="./cook/1.svg" alt="" />
+              <img src={Image1} alt="" />
             </div>
             <div className="hidden lg:block">
               <Button className="py-5 shadow-lg" variant={"red_outline"}>
@@ -53,7 +57,7 @@ function CookComponent() {
               </Button>
             </div>
             <div className="h-40 lg:h-full">
-              <img src="./cook/2.svg" alt="" />
+              <img src={Image2} alt="" />
             </div>
             <div className="hidden lg:block">
               <Button className="py-5 shadow-lg" variant={"green_outline"}>
@@ -63,8 +67,8 @@ function CookComponent() {
           </div>
           <div className="flex flex-col gap-6">
             <div className="flex-1 flex items-center justify-between pl-10 bg-foreground-green/80 rounded-xl">
-              <div className="flex flex-col items-start justify-between space-y-5">
-                <h1 className="text-4xl font-bold text-background">200 +</h1>
+              <div className="flex flex-col items-start justify-between space-y-2 lg:space-y-5">
+                <h1 className="text-2xl lg:text-4xl font-bold text-background">200 +</h1>
                 <span className="text-white">Healthy recipes</span>
                 <Button
                   className="bg-transparent border border-background text-background"
@@ -75,10 +79,10 @@ function CookComponent() {
                 </Button>
               </div>
               <div className="w-1/2 h-full">
-                <img src="./cook/3.svg" alt="" />
+                <img src={Image3} alt="" />
               </div>
             </div>
-            <div className="bg-background-darker rounded-xl p-10 flex flex-col items-center gap-4">
+            <div className="bg-background-darker rounded-xl p-6 lg:p-10 flex flex-col items-center gap-4">
               <h3 className="font-medium">Don't miss the new posts</h3>
               <Input className="bg-white" placeholder="Your email" />
               <Button className="w-full" variant={"green"} size={"lg"}>

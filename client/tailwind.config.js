@@ -4,7 +4,7 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
   	fontFamily: {
-  		main: ["Roboto", "sans-serif"]
+  		main: ["Poppins", "sans-serif"]
   	},
   	extend: {
   		borderRadius: {

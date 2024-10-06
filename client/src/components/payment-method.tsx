@@ -1,6 +1,6 @@
-import Image1 from "../../public/payment/1.svg";
-import Image2 from "../../public/payment/2.svg";
-import Image3 from "../../public/payment/3.svg";
+import Image1 from "@/assets/payment/1.svg";
+import Image2 from "@/assets/payment/2.svg";
+import Image3 from "@/assets/payment/3.svg";
 
 import { Controller } from "react-hook-form";
 import {

@@ -21,10 +21,7 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import {
@@ -93,11 +90,11 @@ function Navbar() {
   };
 
   return (
-    <header className="w-full mx-auto py-4 px-8 flex items-center justify-between text-xs font-medium">
+    <header className="w-full mx-auto py-4 px-2 lg:px-8 flex items-center justify-between text-xs font-medium">
       <div className="flex items-center justify-between lg:justify-normal lg:gap-8 flex-1 mr-5 pr-5 border-r-2 border-background-darker lg:mr-0 lg:pr-0 lg:border-r-0 lg:border-none lg:flex-none">
         <Link to={"/"}>
           <img
-            className="w-24 relative -top-0.5"
+            className="lg:w-24 w-20 relative -top-0.5"
             src={Logo}
             alt="Logo Website"
           />
@@ -142,7 +139,7 @@ function Navbar() {
               </div>
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-96 pl-8 pr-1 mr-8 flex flex-col justify-between gap-4 rounded-3xl top-2">
+          <PopoverContent className="w-80 pl-6 pr-1 mr-8 flex flex-col justify-between gap-4 rounded-3xl top-2">
             <h4 className="font-medium leading-none">My shopping cart</h4>
             <ScrollArea className="w-full h-96 pr-4">
               <div className="grid gap-4">
@@ -160,7 +157,7 @@ function Navbar() {
                 </div>
               </div>
             </ScrollArea>
-            <div className="flex flex-col space-y-4">
+            <div className="flex flex-col space-y-4 pr-4">
               <div className="flex items-center justify-between font-medium">
                 <span>Subtotal:</span>
                 <span>$72.00</span>

@@ -23,6 +23,7 @@ const buttonVariants = cva(
         green_outline: "text-foreground-green border border-foreground-green shadow hover:text-primary-foreground hover:bg-foreground-green",
         red: "text-primary-foreground bg-foreground-red shadow hover:bg-foreground-red/80 ",
         red_outline: "text-foreground-red border border-foreground-red shadow hover:text-primary-foreground hover:bg-foreground-red",
+        blue_outline: "text-blue-500 border border-blue-500 shadow hover:text-primary-foreground hover:bg-blue-500",
       },
       size: {
         default: "h-9 px-4 py-2",

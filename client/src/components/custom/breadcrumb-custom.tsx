@@ -19,7 +19,7 @@ interface BreadcrumbCustomProps {
 function BreadcrumbCustom({ data }: BreadcrumbCustomProps) {
   return (
     <Breadcrumb className="mb-6">
-      <BreadcrumbList>
+      <BreadcrumbList className="text-[13px] lg:text-sm">
         {data.map((item, index) =>
           index !== data.length - 1 ? (
             <>
@@ -31,7 +31,7 @@ function BreadcrumbCustom({ data }: BreadcrumbCustomProps) {
               </BreadcrumbSeparator>
             </>
           ) : (
-            <BreadcrumbItem key={index}>
+            <BreadcrumbItem key={index} className="w-20 line-clamp-1 lg:w-40">
               <BreadcrumbPage>{item.label}</BreadcrumbPage>
             </BreadcrumbItem>
           )

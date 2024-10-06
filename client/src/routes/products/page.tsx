@@ -1,5 +1,5 @@
 import { RefreshCcw, X } from "lucide-react";
-import { beans, fruits } from "@/utils/data";
+import { listProduct } from "@/utils/data";
 
 import BreadcrumbCustom from "@/components/custom/breadcrumb-custom";
 import CardProduct from "@/components/product/card-product";
@@ -23,7 +23,7 @@ const links = [
   { id: 2, link: "/", label: "Dried fruits" },
 ];
 
-const data = [...fruits, ...beans];
+const data = listProduct;
 
 const brands = [
   { label: "Artisana", value: 1 },
@@ -68,6 +68,7 @@ function ProductsPage() {
                 min={0}
                 max={120}
               />
+              {/* <PriceFilter /> */}
             </AccordionCustom>
           </div>
           <div className="mt-2">
@@ -78,7 +79,7 @@ function ProductsPage() {
           <div className="mt-2">
             <AccordionCustom title="Form">
               <div className="flex flex-col gap-4">
-                {forms.map((item, index) => (
+                {forms.map((item) => (
                   <div className="flex items-center space-x-6">
                     <Checkbox id={item.value.toString()} value={item.value} />
                     <label
@@ -161,8 +162,8 @@ function ProductsPage() {
                 <X className="text-foreground" size={16} />
               </Button>
               <Button className="bg-[#eae7e4] gap-2 hover:bg-[#eae7e4] hover:opacity-80">
-                <span className="text-foreground/50">Price:</span>
-                <span className="text-foreground">$0 - $20</span>
+                <span className="text-foreground/50">Form:</span>
+                <span className="text-foreground">On Weight</span>
                 <X className="text-foreground" size={16} />
               </Button>
               <Button className="ml-2" variant={"link"}>

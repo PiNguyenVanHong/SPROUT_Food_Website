@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Input } from "../ui/input";
 import { Minus, Plus } from "lucide-react";
+import { formatWeight } from "@/utils/format";
 
 interface NumberInputProps {
   min?: number;
@@ -37,10 +38,10 @@ const NumberInput = ({
   };
 
   return (
-    <div className="flex items-center relative">
+    <div className="flex items-center relative border rounded-lg">
       <button
         onClick={handleDecrease}
-        className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+        className="bg-transparent hover:opacity-80 p-3 h-11"
         disabled={count <= min}
       >
         <Minus size={16} />
@@ -50,7 +51,7 @@ const NumberInput = ({
             type="number"
             value={count}
             onChange={handleInputChange}
-            className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm block w-full py-2.5 rounded-none"
+            className="hidden bg-white border-x-0 h-11 text-center text-gray-900"
             style={{
                 MozAppearance: "textfield",
               }}
@@ -58,9 +59,13 @@ const NumberInput = ({
               max={max}
         />
 
+        <div className="w-12 py-2.5 bg-white block text-center">
+              {formatWeight(count)}
+        </div>
+
       <button
         onClick={handleIncrease}
-        className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+        className="bg-transparent hover:opacity-80 p-3 h-11"
         disabled={count >= max}
       >
         <Plus size={16} />

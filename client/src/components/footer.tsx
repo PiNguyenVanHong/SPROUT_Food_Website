@@ -2,6 +2,8 @@ import Logo from "@/assets/logo.png";
 
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
+import { Button } from "./ui/button";
+import { Check } from "lucide-react";
 
 function Footer() {
   const navbar = [
@@ -70,8 +72,11 @@ function Footer() {
         </div>
         <div className="basis-1/4 flex flex-col gap-4 text-bas mb-10 lg:mb-0">
           <h5 className="font-medium">Get our newsletters:</h5>
-          <div>
-            <Input className="bg-white" placeholder="Your email" />
+          <div className="relative">
+            <Input className="bg-white pr-16" placeholder="Your email" />
+            <Button className="absolute top-0 right-0 border-l-0 rounded-l-none">
+              <Check size={18} />
+            </Button>
           </div>
           <div className="hidden lg:flex items-center gap-4 text-foreground/60 text-sm font-medium underline">
             <span>Term & Conditions</span>
