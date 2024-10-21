@@ -60,9 +60,9 @@ function Footer() {
           {navbar.map((nav, i) => (
             <div key={i} className="flex flex-col gap-2 text-sm">
               <h5 className="font-semibold text-base mb-2">{nav.label}</h5>
-              <div className="flex lg:flex-col gap-6 font-medium border-b-2 border-background-darker lg:border-none lg:gap-2 pb-6 mb-6 lg:pb-0 lg:mb-0">
+              <div className="flex lg:flex-col gap-6 font-medium border-b border-foreground/10 lg:border-none lg:gap-2 pb-6 mb-6 lg:pb-0 lg:mb-0">
                 {nav.links.map((l, j) => (
-                  <Link key={j} to={l.link}>
+                  <Link key={j} to={l.link} className="hover:underline">
                     {l.label}
                   </Link>
                 ))}
@@ -75,7 +75,7 @@ function Footer() {
           <div className="relative">
             <Input className="bg-white pr-16" placeholder="Your email" />
             <Button className="absolute top-0 right-0 border-l-0 rounded-l-none">
-              <Check size={18} />
+              <Check size={18}  />
             </Button>
           </div>
           <div className="hidden lg:flex items-center gap-4 text-foreground/60 text-sm font-medium underline">

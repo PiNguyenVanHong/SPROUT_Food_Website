@@ -4,7 +4,6 @@ export const formCheckoutSchema = z
   .object({
     firstName: z.string().min(2, "First name must be at least 2 characters"),
     lastName: z.string().min(2, "Last name must be at least 2 characters"),
-    phone: z.string().min(10, "Phone number must be at least 10 digits"),
     email: z.string().email("Invalid email address"),
     country: z.string().min(1, "Please select a country"),
     city: z.string().min(1, "Please select a city"),
@@ -13,6 +12,7 @@ export const formCheckoutSchema = z
     packagingType: z.string().min(1, "Please select a packaging type"),
     shippingOption: z.string().min(1, "Please select a shipping option"),
     paymentMethod: z.string().min(1, "Please select a payment method"),
+    phone: z.string().regex(/^\d{10,11}$/, "Số điện thoại không hợp lệ"),
     cardNumber: z
       .string()
       .optional()
@@ -48,6 +48,19 @@ export const formCheckoutSchema = z
       path: ["paymentMethod"],
     }
   );
+
+export const formCheckoutModalSchema = z.object({
+  firstName: z.string().min(2, "First name must be at least 2 characters"),
+  lastName: z.string().min(2, "Last name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  country: z.string().min(1, "Please select a country"),
+  city: z.string().min(1, "Please select a city"),
+  street: z.string().min(5, "Street address must be at least 5 characters"),
+  postcode: z.string().min(5, "Postcode must be at least 5 characters"),
+  packagingType: z.string().min(1, "Please select a packaging type"),
+  shippingOption: z.string().min(1, "Please select a shipping option"),
+  phone: z.string().regex(/^\d{10,11}$/, "Số điện thoại không hợp lệ"),
+});
 
 export const formLoginSchema = z.object({
   firstName: z.string().min(1, "First name is required"),

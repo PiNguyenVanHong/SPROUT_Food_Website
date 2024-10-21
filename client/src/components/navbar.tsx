@@ -13,27 +13,19 @@ import {
   ShoppingBag,
   UserRound,
 } from "lucide-react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import SearchBar from "@/components/search-bar";
-import { ScrollArea } from "./ui/scroll-area";
-import CartItem from "./cart/cart-item";
-import { useState } from "react";
-import LoginForm from "./auth/login-form";
+import CartItem from "@/components/cart/cart-item";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { useModal } from "@/hooks/use-modal-store";
 
 const orderItems = [
   {
@@ -83,6 +75,7 @@ const orderItems = [
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { onOpen } = useModal();
 
   const handleCheckout = () => {
     setIsOpen(!isOpen);
@@ -112,24 +105,13 @@ function Navbar() {
           <BadgeCent size={18} />
           <span>Bonus: 15%</span>
         </div>
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <div className="flex items-center gap-4 hover:bg-white transition-all p-2 rounded-md cursor-pointer">
+        <div className="flex items-center gap-4 hover:bg-white transition-all p-2 rounded-md cursor-pointer" onClick={() => onOpen("login-form")}>
               <UserRound size={18} />
               <span className="inline-flex items-center gap-2">
                 PiKayQi
                 <ChevronDown size={10} />
               </span>
             </div>
-          </AlertDialogTrigger>
-          <AlertDialogContent className="max-w-4xl bg-white p-0">
-            <LoginForm />
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction>Continue</AlertDialogAction>
-          </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
         <Popover open={isOpen} onOpenChange={setIsOpen}>
           <PopoverTrigger asChild>
             <Button className="bg-white" variant={"outline"}>
@@ -174,13 +156,13 @@ function Navbar() {
         </Popover>
       </div>
       <div className="flex lg:hidden items-center gap-8">
-        <div className="">
+        <div className="cursor-pointer hover:opacity-80 transition duration-300" onClick={() => onOpen("login-form")}>
           <UserRound size={24} />
         </div>
-        <div>
+        <div className="cursor-pointer hover:opacity-80 transition duration-300" onClick={() => navigate("/checkout")}>
           <ShoppingBag size={24} />
         </div>
-        <div>
+        <div className="cursor-pointer hover:opacity-80 transition duration-300">
           <AlignJustify size={24} />
         </div>
       </div>

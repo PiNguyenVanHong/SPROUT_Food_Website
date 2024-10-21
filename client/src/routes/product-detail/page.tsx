@@ -4,6 +4,8 @@ import Image3 from "@/assets/rating/3.png";
 import Image4 from "@/assets/rating/4.png";
 import Image5 from "@/assets/rating/5.png";
 
+import Product from "@/assets/products/fruits/2.svg";
+
 import { BadgeCheck, ChevronLeft, Plus } from "lucide-react";
 // import { useLoaderData } from "react-router-dom";
 
@@ -15,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { beans } from "@/utils/data";
 import CarouselProduct from "@/components/product/carousel-product";
 import { formatNumber } from "@/utils/format";
+import { useNavigate } from "react-router-dom";
 
 const links = [
   { label: "Homepage", link: "/" },
@@ -23,6 +26,7 @@ const links = [
 ];
 
 function ProductDetailPage() {
+  const navigate = useNavigate();
   // const { data }: any = useLoaderData();
 
   return (
@@ -30,7 +34,7 @@ function ProductDetailPage() {
       <div className="flex flex-col lg:flex-row gap-10 pl-4 lg:pl-0">
         <div className="basis-1/2">
           <BreadcrumbCustom data={links} />
-          <Button className="p-0" variant={"link"}>
+          <Button className="p-0" variant={"link"} onClick={() => navigate("/products")}>
             <ChevronLeft className="mr-3" size={18} />
             <span>To Dried fruits</span>
           </Button>
@@ -44,20 +48,20 @@ function ProductDetailPage() {
       <div className="flex flex-col lg:flex-row gap-10 border-b-2 border-background-darker pl-4 lg:pl-0 pb-0 lg:pb-20">
         <div className="order-last lg:order-first basis-1/2 flex flex-col items-center">
           <div className="hidden lg:block w-96">
-            <img src="../public/products/fruits/2.svg" alt="" />
+            <img src={Product} alt="" />
           </div>
           <CustomersReview />
         </div>
         <div className="order-1 basis-1/2 flex flex-col items-center lg:items-start gap-4 mt-4">
           <div className="block lg:hidden w-72">
-            <img src="../public/products/fruits/2.svg" alt="" />
+            <img src={Product} alt="" />
           </div>
           <div className=" mx-4 lg:mx-0 w-full flex items-center gap-4 text-sm font-medium">
-            <div className="flex items-center gap-4 lg:gap-8 text-foreground-green px-3 py-2 border border-background-draker rounded-lg">
+            <div className="flex items-center gap-3 lg:gap-8 text-foreground-green px-3 py-2 border border-background-draker rounded-lg">
               <span>In stock</span>
               <BadgeCheck size={16} />
             </div>
-            <div className="text-muted-foreground tracking-wide">
+            <div className="text-muted-foreground">
               Delivery:
               <span className="ml-2">1-3 business days</span>
             </div>
@@ -80,7 +84,7 @@ function ProductDetailPage() {
               <div>Jumbo</div>
             </div>
           </div>
-          <div className="fixed left-0 z-20 bottom-0 lg:static w-full flex mt-6 p-4 lg:p-8 items-center gap-8 bg-white lg:rounded-xl shadow-md">
+          <div className="fixed left-0 bottom-0 z-20 lg:static w-full flex mt-6 p-4 pb-8 lg:p-8 items-center gap-8 bg-white lg:rounded-xl shadow-md">
             <div className="space-y-1 flex-1">
               <div className="font-semibold text-lg">Total: {formatNumber(5.4, true)}</div>
               <div className="text-muted-foreground/70 font-medium text-sm">

@@ -18,7 +18,7 @@ interface BreadcrumbCustomProps {
 
 function BreadcrumbCustom({ data }: BreadcrumbCustomProps) {
   return (
-    <Breadcrumb className="mb-6">
+    <Breadcrumb className="ml-2 lg:ml-0 mb-6">
       <BreadcrumbList className="text-[13px] lg:text-sm">
         {data.map((item, index) =>
           index !== data.length - 1 ? (

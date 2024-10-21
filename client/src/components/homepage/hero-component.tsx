@@ -11,12 +11,12 @@ function HeroComponent() {
         <div className="basis-2/3 bg-background-darker rounded-xl ml-2 flex justify-between overflow-hidden shadow-lg">
           <div className="flex flex-col items-start justify-center gap-10 ml-28 w-1/3 h-full">
             <h1 className="text-5xl font-semibold">Organic bar</h1>
-            <span>
+            <span className="font-medium">
               Espcially suitable for athletes, but also ideal for preventing
               fatigue and loss of productivity
             </span>
             <div>
-              <Button variant={"green"}>Shop now</Button>
+              <Button className="px-8 py-6" variant={"green"}>Shop now</Button>
             </div>
           </div>
           <div className="w-1/2">

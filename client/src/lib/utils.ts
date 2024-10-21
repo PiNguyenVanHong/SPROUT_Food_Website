@@ -5,6 +5,18 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const formatNumberPhone = (value: string) => {
+  const cleaned = value.replace(/\D/g, '');
+  
+  const match = cleaned.match(/^(\d{4})(\d{3})(\d{3})$/);
+  
+  if (match) {
+    return `${match[1]} ${match[2]} ${match[3]}`;
+  }
+  
+  return value;
+};
+
 export const formatCardNumber = (value: string) => {
   const v = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
   const matches = v.match(/\d{4,16}/g);

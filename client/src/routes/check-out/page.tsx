@@ -1,13 +1,23 @@
+"use client";
+
 import Image1 from "@/assets/products/beans/1.svg";
 import Image2 from "@/assets/products/beans/2.png";
 import Image3 from "@/assets/products/beans/3.svg";
 import Image4 from "@/assets/products/beans/4.svg";
 import Image5 from "@/assets/products/beans/5.svg";
 
-import { useCallback } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useCallback, useEffect, useState } from "react";
+import {
+  CircleCheckBig,
+  EllipsisVertical,
+  PencilRuler,
+  Plus,
+  X,
+} from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useModal } from "@/hooks/use-modal-store";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -26,8 +36,29 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import BreadcrumbCustom from "@/components/custom/breadcrumb-custom";
-import { formatCardNumber, formatCVV, formatExpirationDate } from "@/lib/utils";
+import {
+  formatCardNumber,
+  formatCVV,
+  formatExpirationDate,
+  formatNumberPhone,
+} from "@/lib/utils";
 import PaymentMethod from "@/components/payment-method";
 import { formCheckoutSchema } from "@/utils/form-schema";
 import CartItem from "@/components/cart/cart-item";
@@ -83,6 +114,10 @@ const orderItems = [
 ];
 
 function CheckoutPage() {
+  const { onOpen, data } = useModal();
+
+  const [checkoutForm, setCheckoutForm] = useState<any>(undefined);
+
   const form = useForm<z.infer<typeof formCheckoutSchema>>({
     resolver: zodResolver(formCheckoutSchema),
     defaultValues: {
@@ -104,6 +139,10 @@ function CheckoutPage() {
     console.log(values);
   }
 
+  const handleFormatNumberPhone = useCallback((value: string) => {
+    return formatNumberPhone(value);
+  }, []);
+
   const handleFormatCardNumber = useCallback((value: string) => {
     return formatCardNumber(value);
   }, []);
@@ -124,15 +163,19 @@ function CheckoutPage() {
   const delivery = 8.2;
   const total = subtotal + delivery;
 
+  useEffect(() => {
+    setCheckoutForm(data.checkoutForm);
+  }, [data.checkoutForm]);
+
   return (
-    <div className="max-w-7xl w-full h-full mx-auto mt-12 mb-24">
-      <div className="w-full">
+    <div className="max-w-md xl:max-w-7xl w-full h-full mx-auto my-6 lg:mt-12 lg:mb-24">
+      <div className="w-full pl-4 lg:pl-0">
         <BreadcrumbCustom key={links[0].label} data={links} />
         <h1 className="text-4xl font-semibold">Checkout</h1>
       </div>
 
-      <div className="flex flex-col md:flex-row mt-12">
-        <div className="basis-8/12 pr-20">
+      <div className="flex flex-col md:flex-row mt-4 lg:mt-12">
+        <div className="hidden lg:block basis-2/3 pr-20">
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
@@ -192,8 +235,17 @@ function CheckoutPage() {
                         <FormControl>
                           <Input
                             className="bg-white"
-                            placeholder="+1 234 567 890"
+                            placeholder="+84 234 567 890"
                             {...field}
+                            value={handleFormatNumberPhone(field.value || "")}
+                            onChange={(e) => {
+                              const formatted = handleFormatNumberPhone(
+                                e.target.value
+                              );
+                              e.target.value = formatted;
+                              field.onChange(e.target.value.replace(/\D/g, ""));
+                            }}
+                            maxLength={12}
                           />
                         </FormControl>
                         <FormMessage />
@@ -401,8 +453,56 @@ function CheckoutPage() {
             </form>
           </Form>
         </div>
-        <div className="basis-4/12 space-y-10">
-          <div className="bg-gray-100 rounded-lg space-y-4">
+        <div className="block lg:hidden px-8">
+          <h2 className="-mx-3 mb-4 font-semibold text-lg">Delivery Address</h2>
+          {checkoutForm ? (
+            <div className="w-full bg-white rounded-lg p-4 shadow-lg">
+              <div className="flex justify-between items-start">
+                <div className="font-medium capitalize">
+                  <div>
+                    {checkoutForm?.firstName} {checkoutForm?.lastName}
+                  </div>
+                  <div>{checkoutForm?.phone}</div>
+                  <div>
+                    {checkoutForm?.city}, {checkoutForm?.country}
+                  </div>
+                  <div>{checkoutForm?.street}</div>
+                </div>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <EllipsisVertical className="cursor-pointer" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem
+                      onClick={() => {
+                        setCheckoutForm(undefined);
+                      }}
+                    >
+                      <X className="mr-2" size={10} />
+                      <span>Remove</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+              <div className="flex justify-end items-center mt-2 gap-4">
+                <span className="text-gray-400/70 font-medium">
+                  Delivery Address
+                </span>
+                <CircleCheckBig className="text-foreground-green" />
+              </div>
+            </div>
+          ) : (
+            <Button
+              className="w-full h-36"
+              variant={"green_outline"}
+              onClick={() => onOpen("delivery-address-form", {})}
+            >
+              <Plus size={40} />
+            </Button>
+          )}
+        </div>
+        <div className="basis-1/3 space-y-6">
+          <div className="w-full fixed bottom-0 z-20 lg:static bg-white lg:bg-gray-100 rounded-lg space-y-3 p-4 lg:p-0">
             <h2 className="text-xl font-semibold">Your order:</h2>
             <div className="flex flex-col items-center gap-2 text-foreground/70 pb-4 border-b-2">
               <div className="w-full flex justify-between">
@@ -414,22 +514,68 @@ function CheckoutPage() {
                 <span>${delivery.toFixed(2)}</span>
               </div>
             </div>
-            <div className="flex justify-between font-bold text-lg">
-              <span>Total:</span>
-              <span>${total.toFixed(2)}</span>
+            <div className="flex justify-between items-center lg:flex-col lg:space-y-3">
+              <div className="lg:w-full flex justify-between gap-3 font-bold text-lg">
+                <span>Total:</span>
+                <span>${total.toFixed(2)}</span>
+              </div>
+              <Button
+                type="submit"
+                className="hidden lg:flex py-5 lg:w-full lg:py-6"
+                onClick={form.handleSubmit(onSubmit)}
+                variant={"green"}
+              >
+                Purchase
+              </Button>
+              <Drawer>
+                <DrawerTrigger>
+                  <Button
+                    type="submit"
+                    className="flex lg:hidden py-5 lg:w-full lg:py-6"
+                    variant={"green"}
+                  >
+                    Purchase
+                  </Button>
+                </DrawerTrigger>
+                <DrawerContent>
+                  <DrawerHeader>
+                    <DrawerTitle>Choose Your Payment Option</DrawerTitle>
+                    <DrawerDescription>
+                    Select a payment method to finalize your purchase.
+                    </DrawerDescription>
+                  </DrawerHeader>
+                  <Form {...form}>
+                    <form
+                      onSubmit={form.handleSubmit(onSubmit)}
+                      className="h-full flex flex-col justify-between px-6"
+                    >
+                      <PaymentMethod
+                        form={form}
+                        handleFormatCVV={handleFormatCVV}
+                        handleFormatCardNumber={handleFormatCardNumber}
+                        handleFormatExpirationDate={handleFormatExpirationDate}
+                      />
+                    </form>
+                  </Form>
+                  <DrawerFooter>
+                    <Button>Pay</Button>
+                  </DrawerFooter>
+                </DrawerContent>
+              </Drawer>
             </div>
           </div>
-          <Button
-            type="submit"
-            className="w-full py-6"
-            onClick={form.handleSubmit(onSubmit)}
-            variant={"green"}
-          >
-            Purchase
-          </Button>
-          <div className="">
+          <div className="px-8">
+            <h2 className="block lg:hidden -mx-3 mb-4 font-semibold text-lg">
+              Order Summary
+            </h2>
             {orderItems.map((item, index) => (
-             <CartItem key={index} name={item.name} quantity={item.quantity} price={item.price} image={item.image} />
+              <CartItem
+                key={index}
+                name={item.name}
+                quantity={item.quantity}
+                price={item.price}
+                image={item.image}
+              />
             ))}
           </div>
         </div>

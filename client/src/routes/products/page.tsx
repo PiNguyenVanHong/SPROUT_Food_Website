@@ -17,6 +17,7 @@ import {
 import AccordionCustom from "@/components/custom/accordion-custom";
 import { SliderCustom } from "@/components/custom/slider-custom";
 import CommandCustom from "@/components/custom/command-custom";
+import FilterMobile from "@/components/filter/filter-mobile";
 
 const links = [
   { id: 1, link: "/", label: "Homepage" },
@@ -50,13 +51,13 @@ const weights = [
     { label: "10g - 60g", value: 23, amount: 6 },
     { label: "60g - 200g", value: 24, amount: 22 },
     { label: "> 200g", value: 25, amount: 54 },
-]
+];
 
 function ProductsPage() {
   return (
-    <div className="max-w-7xl w-full h-full mx-auto my-12">
+    <div className="max-w-sm lg:max-w-7xl w-full h-full mx-auto my-6 lg:my-12">
       <div className="flex gap-16">
-        <div className="basis-1/4">
+        <div className="basis-1/4 hidden lg:block">
           <h3 className="text-xl font-semibold">Filter</h3>
           <div className="mt-2">
             <AccordionCustom title="Price">
@@ -127,16 +128,22 @@ function ProductsPage() {
             </AccordionCustom>
           </div>
         </div>
-        <div className="basis-3/4">
+        <div className="lg:basis-3/4">
           <BreadcrumbCustom key={links[0].id} data={links} />
-          <h1 className="text-5xl font-bold tracking-wide">Dried fruits</h1>
-          <div className="flex flex-col gap-8 my-10">
-            <div className="flex items-center justify-between text-sm font-medium">
-              <p>
+          <h1 className="ml-6 lg:ml-0 text-2xl lg:text-5xl font-bold lg:tracking-wide">Dried fruits</h1>
+          <div className="flex flex-col gap-8 my-10 ml-2 lg:ml-0">
+            <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-0 lg:justify-between text-sm font-medium">
+              <p className="hidden lg:block">
                 Showed <span>84</span> goods
               </p>
-              <div className="flex items-center gap-8">
-                <span className="text-foreground/60">Sort by</span>
+              <div className="lg:hidden w-full flex items-center justify-between px-4 py-2 bg-background-darker rounded-xl">
+                <div className="text-lg font-semibold">
+                  <FilterMobile/> (<span>2</span>)
+                </div>
+                <span>Showed 84 goods</span>
+              </div>
+              <div className="w-full px-4 lg:px-0 lg:w-auto flex items-center gap-8">
+                <span className="w-full lg:w-auto text-foreground/60">Sort by</span>
                 <div>
                   <Select>
                     <SelectTrigger className="w-40 text-xs font-medium">
@@ -155,7 +162,7 @@ function ProductsPage() {
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-5 text-sm font-medium">
+            <div className="hidden lg:flex items-center gap-5 text-sm font-medium">
               <Button className="bg-[#eae7e4] gap-2 hover:bg-[#eae7e4] hover:opacity-80">
                 <span className="text-foreground/50">Price:</span>
                 <span className="text-foreground">$0 - $20</span>
@@ -171,7 +178,7 @@ function ProductsPage() {
               </Button>
             </div>
           </div>
-          <div className="mt-28 grid grid-cols-3 items-center justify-between gap-x-4 gap-y-20">
+          <div className="mt-14 lg:mt-28 grid grid-cols-2 lg:grid-cols-3 items-center justify-between gap-x-0.5 gap-y-8 lg:gap-x-4 lg:gap-y-20">
             {data.map((item, index) => (
               <CardProduct
                 key={index}
@@ -186,7 +193,7 @@ function ProductsPage() {
               />
             ))}
           </div>
-          <div className="text-center mt-14 text-sm">
+          <div className="text-center my-14 text-sm">
             <Button className="px-24 py-5 bg-transparent text-foreground hover:text-background ring-1 ring-[#eae7e4]">
               <RefreshCcw className="mr-4" size={16} />
               Load more

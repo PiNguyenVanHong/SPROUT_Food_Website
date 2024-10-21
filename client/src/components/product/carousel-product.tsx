@@ -1,5 +1,7 @@
 import { ChevronRight, LucideIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { ProductType } from "@/utils/types";
+import { cn } from "@/lib/utils";
 
 import {
   Carousel,
@@ -10,7 +12,6 @@ import {
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import CardProduct from "@/components/product/card-product";
-import { cn } from "@/lib/utils";
 
 interface CarouselProductProps {
   label?: string;
@@ -19,6 +20,8 @@ interface CarouselProductProps {
 }
 
 function CarouselProduct({ label, icon: Icon, products }: CarouselProductProps) {
+  const navigate = useNavigate();
+
   return (
     <div className={cn("w-full max-w-7xl mx-auto", Icon ? "my-10 lg:my-20" : "")}>
       {label && Icon && (
@@ -27,7 +30,7 @@ function CarouselProduct({ label, icon: Icon, products }: CarouselProductProps) 
           <Icon size={32} />
           <h1 className="text-xl lg:text-3xl font-semibold">{label}</h1>
         </div>
-        <Button className="hidden lg:flex items-center gap-2 p-2" variant={"link"}>
+        <Button className="hidden lg:flex items-center gap-2 p-2" variant={"link"} onClick={() => navigate("/products")}>
           <span>View all</span>
           <ChevronRight size={16} />
         </Button>

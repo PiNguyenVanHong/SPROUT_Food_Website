@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useNavigate } from "react-router-dom";
 
 interface CardProductProps {
   id: number;
@@ -30,10 +31,12 @@ function CardProduct({
   sale,
   weight,
 }: CardProductProps) {
+  const navigate = useNavigate();
+
   return (
-    <div className="w-full p-4">
+    <div className="w-full p-1 lg:p-4" onClick={() => navigate("/products/123")}>
       <Card className="group hover:border-foreground-green transition duration-300 cursor-pointer text-foreground h-full">
-        <CardHeader className="h-12 px-3 lg:p-6 lg:h-28 relative -top-14 lg:-top-24">
+        <CardHeader className="h-12 px-3 lg:p-6 lg:h-28 relative -top-14 lg:-top-20">
           <div className="flex items-end justify-between">
             <div className="h-20 lg:h-36 drop-shadow-xl shadow-black">
               <img src={image} alt="" />

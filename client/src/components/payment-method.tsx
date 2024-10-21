@@ -28,7 +28,7 @@ function PaymentMethod({
 }: PaymentMethodProps) {
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-4">Payment:</h2>
+      <h2 className="hidden lg:block text-xl font-semibold mb-4">Payment:</h2>
       <FormField
         control={form.control}
         name="paymentMethod"
@@ -82,12 +82,12 @@ function PaymentMethod({
         )}
       />
       {form.watch("paymentMethod") === "credit-card" && (
-        <div className="mt-4 grid grid-cols-8 gap-10 items-center">
+        <div className="mt-4 grid grid-cols-8 gap-2 lg:gap-10 items-center">
           <Controller
             control={form.control}
             name="cardNumber"
             render={({ field }) => (
-              <FormItem className="col-span-4">
+              <FormItem className="col-span-8 lg:col-span-4">
                 <FormLabel>Card number</FormLabel>
                 <FormControl>
                   <Input
@@ -111,7 +111,7 @@ function PaymentMethod({
             control={form.control}
             name="expirationDate"
             render={({ field }) => (
-              <FormItem className="col-span-2">
+              <FormItem className="col-span-4 lg:col-span-2">
                 <FormLabel>Expiration date</FormLabel>
                 <FormControl>
                   <Input
@@ -137,7 +137,7 @@ function PaymentMethod({
             control={form.control}
             name="cvv"
             render={({ field }) => (
-              <FormItem className="col-span-2">
+              <FormItem className="col-span-4 lg:col-span-2">
                 <FormLabel>CVV code</FormLabel>
                 <FormControl>
                   <Input

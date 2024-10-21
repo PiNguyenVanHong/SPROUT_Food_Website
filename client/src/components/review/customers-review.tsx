@@ -30,7 +30,7 @@ function CustomersReview() {
   return (
     <div className="w-full flex flex-col mt-0 lg:mt-14 relative">
       <div className="w-full flex items-center justify-between truncate">
-        <h2 className="font-semibold text-xl lg:text-2xl">Customers review</h2>
+        <h2 className="font-semibold text-lg lg:text-2xl">Customers review</h2>
         <div className="flex items-center">
           <div className="flex items-center mr-1 lg:gap-2 lg:hidden">
             <span className="relative">
