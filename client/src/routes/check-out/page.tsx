@@ -11,7 +11,6 @@ import { useCallback, useEffect, useState } from "react";
 import {
   CircleCheckBig,
   EllipsisVertical,
-  PencilRuler,
   Plus,
   X,
 } from "lucide-react";
@@ -44,7 +43,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
   DrawerFooter,

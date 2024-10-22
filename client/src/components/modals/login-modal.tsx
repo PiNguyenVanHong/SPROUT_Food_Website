@@ -37,7 +37,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { formLoginSchema } from "@/utils/form-schema";
 
 const LoginModal = () => {
-  const { isOpen, onClose, type, data } = useModal();
+  const { isOpen, onClose, type } = useModal();
   const isModalOpen = isOpen && type === "login-form";
 
   const handleClose = () => {
